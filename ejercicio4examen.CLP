@@ -10,10 +10,12 @@
     (robot ?n ?m ?c ?u ?r)
     (palet ?pn ?pm ?pc ?pu)
     (pedido ?qn ?qm ?qc ?qu)
-    (test (<> ?qn ?n))
+    (linea ?ln ?lm ?lc ?lu)
+    
     (test (> ?pn 0))
-    (test (<= ?r 3))
+    (test (< ?r 3))
     (test (> ?qn 0))
+    (test (<= ?ln ?qn))
 
     =>
     (assert(robot (+ ?n 1) ?m ?c ?u (+ ?r 1)))
@@ -27,10 +29,12 @@
     (robot ?n ?m ?c ?u ?r)
     (palet ?pn ?pm ?pc ?pu)
     (pedido ?qn ?qm ?qc ?qu)
-    (test (<> ?qm ?m))
+    (linea ?ln ?lm ?lc ?lu)
+
     (test (> ?pm 0))
-    (test (<= ?r 3))
+    (test (< ?r 3))
     (test (> ?qm 0))
+    (test (<= ?lm ?qm))
 
     =>
     (assert(robot ?n (+ ?m 1) ?c ?u (+ ?r 1)))
@@ -43,10 +47,12 @@
     (robot ?n ?m ?c ?u ?r)
     (palet ?pn ?pm ?pc ?pu)
     (pedido ?qn ?qm ?qc ?qu)
-    (test (<> ?qc ?c))
+    (linea ?ln ?lm ?lc ?lu)
+
     (test (> ?pc 0))
-    (test (<= ?r 3))
+    (test (< ?r 3))
     (test (> ?qc 0))
+    (test (<= ?lc ?qc))
 
     =>
     (assert(robot ?n ?m (+ ?c 1) ?u (+ ?r 1)))
@@ -59,10 +65,12 @@
     (robot ?n ?m ?c ?u ?r)
     (palet ?pn ?pm ?pc ?pu)
     (pedido ?qn ?qm ?qc ?qu)
-    (test (<> ?qu ?u))
+    (linea ?ln ?lm ?lc ?lu)
+
     (test (> ?pu 0))
-    (test (<= ?r 3))
+    (test (< ?r 3))
     (test (> ?qu 0))
+    (test (<= ?lu ?qu))
 
     =>
     (assert(robot ?n ?m ?c (+ ?u 1) (+ ?r 1)))
@@ -75,11 +83,12 @@
     (robot ?n ?m ?c ?u ?r)
     (linea ?ln ?lm ?lc ?lu)
     (pedido ?qn ?qm ?qc ?qu)
-    (test (< ?ln ?qm))
-    (test (= ?lm ?qm))
-    (test (= ?lc ?qc))
-    (test (= ?lu ?qu))
-    (test (= ?r 3))
+    (test (= ?r 3))    
+    (test (<= ?ln ?qn)
+    (test (<= ?lm ?qm)
+    (test (<= ?lc ?qc)
+    (test (<= ?lu ?qu)
+
     =>
     (assert(linea (+ ?n ?ln) (+ ?m ?lm) (+ ?c ?lc) (+ ?u ?lu)))
     (assert(robot 0 0 0 0 0))
