@@ -84,10 +84,10 @@
     (linea ?ln ?lm ?lc ?lu)
     (pedido ?qn ?qm ?qc ?qu)
     (test (= ?r 3))    
-    (test (<= ?ln ?qn)
-    (test (<= ?lm ?qm)
-    (test (<= ?lc ?qc)
-    (test (<= ?lu ?qu)
+    (test (<= ?ln ?qn))
+    (test (<= ?lm ?qm))
+    (test (<= ?lc ?qc))
+    (test (<= ?lu ?qu))
 
     =>
     (assert(linea (+ ?n ?ln) (+ ?m ?lm) (+ ?c ?lc) (+ ?u ?lu)))
@@ -105,7 +105,7 @@
     (test (= ?qu ?lu))
 
     =>
-    (printout t "Pedido terminado" crlf)
+    (printout t "Pedido terminado " ?ln ?lm ?lc ?lu crlf)
     (halt)
 )
 
