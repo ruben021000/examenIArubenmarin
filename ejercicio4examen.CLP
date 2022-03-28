@@ -13,9 +13,11 @@
     (test (<> ?qn ?n))
     (test (> ?pn 0))
     (test (<= ?r 3))
+    (test (> ?qn 0))
+
     =>
     (assert(robot (+ ?n 1) ?m ?c ?u (+ ?r 1)))
-    (assert(palets (- ?pn 1) ?pm ?pc ?pu))
+    (assert(palet (- ?pn 1) ?pm ?pc ?pu))
     (printout t "Recojo naranja" crlf)
 )
 
@@ -28,10 +30,11 @@
     (test (<> ?qm ?m))
     (test (> ?pm 0))
     (test (<= ?r 3))
+    (test (> ?qm 0))
 
     =>
     (assert(robot ?n (+ ?m 1) ?c ?u (+ ?r 1)))
-    (assert(palets ?pn (- ?pm 1) ?pc ?pu))
+    (assert(palet ?pn (- ?pm 1) ?pc ?pu))
     (printout t "Recojo manzana" crlf)
 )
 
@@ -43,10 +46,11 @@
     (test (<> ?qc ?c))
     (test (> ?pc 0))
     (test (<= ?r 3))
+    (test (> ?qc 0))
 
     =>
     (assert(robot ?n ?m (+ ?c 1) ?u (+ ?r 1)))
-    (assert(palets ?pn ?m (- ?pc 1) ?pu))
+    (assert(palet ?pn ?m (- ?pc 1) ?pu))
     (printout t "Recojo caqui" crlf)
 )
 
@@ -58,10 +62,11 @@
     (test (<> ?qu ?u))
     (test (> ?pu 0))
     (test (<= ?r 3))
+    (test (> ?qu 0))
 
     =>
     (assert(robot ?n ?m ?c (+ ?u 1) (+ ?r 1)))
-    (assert(palets ?pn ?m ?pc (- ?pu 1)))
+    (assert(palet ?pn ?m ?pc (- ?pu 1)))
     (printout t "Recojo uva" crlf)
 )
 
@@ -69,10 +74,16 @@
 (declare (salience 50))
     (robot ?n ?m ?c ?u ?r)
     (linea ?ln ?lm ?lc ?lu)
+    (pedido ?qn ?qm ?qc ?qu)
+    (test (< ?ln ?qm))
+    (test (= ?lm ?qm))
+    (test (= ?lc ?qc))
+    (test (= ?lu ?qu))
     (test (= ?r 3))
     =>
+    (assert(linea (+ ?n ?ln) (+ ?m ?lm) (+ ?c ?lc) (+ ?u ?lu)))
+    (assert(robot 0 0 0 0 0))
     (printout t "Carga dejada" crlf)
-    (halt)
 )
 
 (defrule terminado
